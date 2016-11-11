@@ -1,0 +1,32 @@
+{
+  "name": "png-split-stream",
+  "version": "1.0.0",
+  "description": "Split a concatenated stream of PNG images into individual PNG frames",
+  "main": "index.js",
+  "scripts": {
+    "test": "node_modules/.bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eugeneware/png-split-stream"
+  },
+  "keywords": [
+    "png",
+    "stream",
+    "streaming",
+    "streams"
+  ],
+  "author": "Eugene Ware <eugene@noblesamurai.com>",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/eugeneware/png-split-stream/issues"
+  },
+  "dependencies": {
+    "bl": "^1.1.2",
+    "buffer-equal": "^1.0.0",
+    "term-img2": "^2.0.1"
+  },
+  "devDependencies": {
+    "mocha": "^3.1.2"
+  }
+}
