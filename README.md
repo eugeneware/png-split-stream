@@ -50,13 +50,7 @@ ffmpeg.stdout
   });
 ```
 
-### Check if a file is a PNG file
+### Acknowledgements
 
-``` js
-var file = fs.readFileSync(__dirname + '/fixtures/trees.png');
-console.log(pngSplitStream.probe(file));
-// true
-
-console.log(!pngSplitStream.probe(new Buffer(100)));
-// false
-```
+This code was heavily adapted and stripped down for just splitting purposes
+from [@devongott/png-stream](https://github.com/devongovett/png-stream).

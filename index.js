@@ -46,10 +46,6 @@ function PNGSplitStream(options) {
 
 util.inherits(PNGSplitStream, Transform);
 
-PNGSplitStream.probe = function(buf) {
-  return bufferEqual(buf.slice(0, 8), SIGNATURE);
-};
-
 PNGSplitStream.prototype._transform = function(data, encoding, done) {
   var self = this;
 

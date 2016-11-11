@@ -5,12 +5,6 @@ var bl = require('bl');
 var termImg = require('term-img2');
 
 describe('PNGSplitStream', function() {
-  it('can probe to see if a file is a png', function() {
-    var file = fs.readFileSync(__dirname + '/fixtures/trees.png');
-    assert(pngSplitStream.probe(file));
-    assert(!pngSplitStream.probe(new Buffer(100)));
-  });
-
   it('splits a concatenated png image', function(done) {
     var images = [];
     fs.createReadStream(__dirname + '/fixtures/all.png')
