@@ -2,7 +2,6 @@ var pngSplitStream = require('../index');
 var assert = require('assert');
 var fs = require('fs');
 var bl = require('bl');
-var termImg = require('term-img2');
 
 describe('PNGSplitStream', function() {
   it('splits a concatenated png image', function(done) {
@@ -11,7 +10,6 @@ describe('PNGSplitStream', function() {
       .pipe(pngSplitStream())
       .on('data', function(data) {
         images.push(data);
-        termImg(data, { log: true });
       })
       .on('end', function() {
         assert.equal(images.length, 6);
@@ -26,7 +24,6 @@ describe('PNGSplitStream', function() {
       .pipe(pngSplitStream())
       .pipe(bl(function(err, images) {
         if (err) return done(err);
-        termImg(images, { log: true });
         assert.equal(images.length, 400304);
         assert.equal(this._bufs.length, 1);
         done();
@@ -37,7 +34,6 @@ describe('PNGSplitStream', function() {
     fs.createReadStream(__dirname + '/fixtures/djay.png')
       .pipe(pngSplitStream())
       .pipe(bl(function(err, image) {
-        termImg(image, { log: true });
         assert.equal(image.length, 129722);
         assert.equal(this._bufs.length, 1);
         done();
@@ -48,7 +44,6 @@ describe('PNGSplitStream', function() {
     fs.createReadStream(__dirname + '/fixtures/djay-indexed.png')
       .pipe(pngSplitStream({ indexed: true }))
       .pipe(bl(function(err, image) {
-        termImg(image, { log: true });
         assert.equal(image.length, 36533);
         assert.equal(this._bufs.length, 1);
         done();
@@ -59,7 +54,6 @@ describe('PNGSplitStream', function() {
     fs.createReadStream(__dirname + '/fixtures/gray.png')
       .pipe(pngSplitStream())
       .pipe(bl(function(err, image) {
-        termImg(image, { log: true });
         assert.equal(image.length, 151800);
         assert.equal(this._bufs.length, 1);
         done();
@@ -70,7 +64,6 @@ describe('PNGSplitStream', function() {
     fs.createReadStream(__dirname + '/fixtures/graya.png')
       .pipe(pngSplitStream())
       .pipe(bl(function(err, image) {
-        termImg(image, { log: true });
         assert.equal(image.length, 97918);
         assert.equal(this._bufs.length, 1);
         done();
