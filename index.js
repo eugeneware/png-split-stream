@@ -50,8 +50,11 @@ PNGSplitStream.prototype._transform = function(data, encoding, done) {
   var self = this;
 
   // process the state machine, possibly asynchronously
+  var oldLength = Infinity;
   function next() {
-    while (self._buffer.length > 0) {
+    while (self._buffer.length < oldLength ||
+          (self._state === PNG_CRC && self._buffer.length >= 4)) { // handle edge case for IEND chunk
+      oldLength = self._buffer.length;
       switch (self._state) {
         case PNG_SIGNATURE:
           self._readSignature();
@@ -339,6 +342,13 @@ PNGSplitStream.prototype._readIDAT = function(data, done) {
     this._sawIDAT = true;
   }
 
+  var buf = data.slice(0, this._chunkSize - this._consumed);
+  done();
+
+  return buf.length;
+};
+
+PNGSplitStream.prototype._readIEND = function(data, done) {
   var buf = data.slice(0, this._chunkSize - this._consumed);
   done();
 
