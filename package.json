@@ -1,6 +1,6 @@
 {
   "name": "png-split-stream",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Split a concatenated stream of PNG images into individual PNG frames",
   "main": "index.js",
   "scripts": {
